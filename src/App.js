@@ -25,7 +25,16 @@ class App extends Component {
       rareFilter: 'todas',
       showSuperTrunfo: false,
     };
-    
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSave = this.handleSave.bind(this);
+    this.validateFormFields = this.validateFormFields.bind(this);
+    this.resetFormInfo = this.resetFormInfo.bind(this);
+    this.handleDeleteCard = this.handleDeleteCard.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
+    this.updateFilteredList = this.updateFilteredList.bind(this);
+  }
+
   render() {
     return (
       <div>
