@@ -7,7 +7,7 @@ class Form extends React.Component {
     return (
       <label htmlFor="card_trunfo">
         <input
-          checked={ cardTrunfo }
+          checkbox={ cardTrunfo }
           id="card_trunfo"
           name="cardTrunfo"
           type="checkbox"
