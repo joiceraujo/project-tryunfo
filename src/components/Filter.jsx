@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Filter extends React.Component {
   render() {
-    const { onFilterDeck, filterCard, filterRare, filterTrunfo } = this.props;
+    const { onFilterList, filterCard, filterRare, filterTrunfo } = this.props;
     return (
       <div>
         <h2>Filtrar</h2>
@@ -12,13 +12,13 @@ class Filter extends React.Component {
           type="text"
           data-testid="name-filter"
           value={ filterCard }
-          onChange={ onFilterDeck }
+          onChange={ onFilterList }
         />
         <select
           id="filterRare"
           data-testid="rare-filter"
           value={ filterRare }
-          onChange={ onFilterDeck }
+          onChange={ onFilterList }
         >
           <option value="todas">todas</option>
           <option value="normal">normal</option>
@@ -32,7 +32,7 @@ class Filter extends React.Component {
             data-testid="trunfo-filter"
             id="filterTrunfo"
             value={ filterTrunfo }
-            onChange={ onFilterDeck }
+            onChange={ onFilterList }
           />
         </label>
       </div>
@@ -41,7 +41,7 @@ class Filter extends React.Component {
 }
 
 Filter.propTypes = {
-  onFilterDeck: PropTypes.func.isRequired,
+  onFilterList: PropTypes.func.isRequired,
   filterCard: PropTypes.string.isRequired,
   filterRare: PropTypes.string.isRequired,
   filterTrunfo: PropTypes.bool.isRequired,

@@ -134,7 +134,7 @@ class App extends React.Component {
         />
         <Card { ...this.state } />
         <Filter
-          onFilterList={ this.onFilterDeck }
+          onFilterList={ this.onFilterList }
           filterCard={ filterCard }
           filterRare={ filterRare }
           filterTrunfo={ filterTrunfo }
