@@ -4,53 +4,45 @@ import Card from './Card';
 
 class List extends React.Component {
   render() {
-    const { cardList, deleteCard } = this.props;
+    const { cards, deleteCard, filterName, filterRare, filterTrunfo } = this.props;
+    let filteredCards = cards;
+    if (filterName.trim() !== '') {
+      filteredCards = cards.filter(({ cardName }) => cardName.includes(filterName));
+    }
+    if (filterRare !== 'todas') {
+      filteredCards = filteredCards.filter(({ cardRare }) => cardRare === filterRare);
+    }
+    if (filterTrunfo) {
+      filteredCards = filteredCards.filter(({ cardTrunfo }) => cardTrunfo === true);
+    }
 
+    const renderList = filteredCards.map((card) => (
+      <div key={ card.cardName }>
+        <Card key={ card.cardName } { ...card } />
+        <button
+          type="button"
+          onClick={ () => deleteCard(card.cardName) }
+          data-testid="delete-button"
+        >
+          Excluir
+        </button>
+      </div>
+    ));
     return (
       <div>
-        {cardList.map((card) => {
-          const { name, description, attr1, attr2, attr3, image, rare, trunfo } = card;
-          return (
-            <div key={ name }>
-              <Card
-                cardName={ name }
-                cardDescription={ description }
-                cardAttr1={ attr1 }
-                cardAttr2={ attr2 }
-                cardAttr3={ attr3 }
-                cardImage={ image }
-                cardRare={ rare }
-                cardTrunfo={ trunfo }
-              />
-              <button
-                data-testid="delete-button"
-                type="button"
-                onClick={ deleteCard() }
-              >
-                Excluir
-              </button>
-            </div>
-          );
-        })}
+        <h1>Todas as Cartas</h1>
+        { renderList }
       </div>
     );
   }
 }
 
 List.propTypes = {
-  cardList: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      attr1: PropTypes.string.isRequired,
-      attr2: PropTypes.string.isRequired,
-      attr3: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      rare: PropTypes.string.isRequired,
-      trunfo: PropTypes.bool.isRequired,
-    }),
-  ).isRequired,
+  cards: PropTypes.arrayOf(PropTypes.object).isRequired,
   deleteCard: PropTypes.func.isRequired,
+  filterName: PropTypes.string.isRequired,
+  filterRare: PropTypes.string.isRequired,
+  filterTrunfo: PropTypes.bool.isRequired,
 };
 
 export default List;

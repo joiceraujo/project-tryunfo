@@ -3,38 +3,36 @@ import PropTypes from 'prop-types';
 
 class Filter extends React.Component {
   render() {
-    const { filterName, filterCards, rareFilter, showSuperTrunfo } = this.props;
+    const { onFilterDeck, filterCard, filterRare, filterTrunfo } = this.props;
     return (
       <div>
+        <h2>Filtrar</h2>
         <input
-          value={ filterName }
+          id="filterCard"
           type="text"
-          name="filterName"
-          placeholder="Nome"
           data-testid="name-filter"
-          onChange={ filterCards }
-          disabled={ showSuperTrunfo }
+          value={ filterCard }
+          onChange={ onFilterDeck }
         />
         <select
-          value={ rareFilter }
-          name="rareFilter"
+          id="filterRare"
           data-testid="rare-filter"
-          onChange={ filterCards }
-          disabled={ showSuperTrunfo }
+          value={ filterRare }
+          onChange={ onFilterDeck }
         >
-
-          <option value="total">Total</option>
-          <option value="normal">Normal</option>
-          <option value="raro">Raro</option>
-          <option value="muito raro">Muito raro</option>
+          <option value="todas">todas</option>
+          <option value="normal">normal</option>
+          <option value="raro">raro</option>
+          <option value="muito raro">muito raro</option>
         </select>
-        <label htmlFor="checkTrunfo">
+        <label htmlFor="filterTrunfo">
+          Super Trunfo
           <input
-            data-testid="trunfo-filter"
             type="checkbox"
-            name="showSuperTrunfo"
-            checked={ showSuperTrunfo }
-            onChange={ filterCards }
+            data-testid="trunfo-filter"
+            id="filterTrunfo"
+            value={ filterTrunfo }
+            onChange={ onFilterDeck }
           />
         </label>
       </div>
@@ -43,10 +41,10 @@ class Filter extends React.Component {
 }
 
 Filter.propTypes = {
-  filterName: PropTypes.string.isRequired,
-  filterCards: PropTypes.func.isRequired,
-  rareFilter: PropTypes.string.isRequired,
-  showSuperTrunfo: PropTypes.bool.isRequired,
+  onFilterDeck: PropTypes.func.isRequired,
+  filterCard: PropTypes.string.isRequired,
+  filterRare: PropTypes.string.isRequired,
+  filterTrunfo: PropTypes.bool.isRequired,
 };
 
 export default Filter;

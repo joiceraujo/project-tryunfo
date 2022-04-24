@@ -12,32 +12,21 @@ class Card extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      deleteButton,
-      onDeleteButton,
     } = this.props;
 
+    const Trunfo = () => {
+      if (cardTrunfo) return <p data-testid="trunfo-card">Super Trunfo</p>;
+    };
     return (
       <div>
-        <p data-testid="name-card" className="card_name">{cardName}</p>
+        <p data-testid="name-card">{ cardName }</p>
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
-        <p data-testid="description-card">{cardDescription}</p>
-        <p data-testid="attr1-card">{cardAttr1}</p>
-        <p data-testid="attr2-card">{cardAttr2}</p>
-        <p data-testid="attr3-card">{cardAttr3}</p>
-        <p data-testid="rare-card">{cardRare}</p>
-        {cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p>}
-
-        { deleteButton
-        && (
-          <button
-            data-testid="delete-button"
-            type="button"
-            className="button-delete"
-            id={ `${cardName}|${cardTrunfo}` }
-            onClick={ onDeleteButton }
-          >
-            Deletar
-          </button>) }
+        <p data-testid="description-card">{ cardDescription }</p>
+        <p data-testid="attr1-card">{ cardAttr1 }</p>
+        <p data-testid="attr2-card">{ cardAttr2 }</p>
+        <p data-testid="attr3-card">{ cardAttr3 }</p>
+        <p data-testid="rare-card">{ cardRare }</p>
+        { Trunfo() }
       </div>
     );
   }
@@ -52,12 +41,6 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  deleteButton: PropTypes.bool.isRequired,
-  onDeleteButton: PropTypes.func,
-};
-
-Card.defaultProps = {
-  onDeleteButton: null,
 };
 
 export default Card;
